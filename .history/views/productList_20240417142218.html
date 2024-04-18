@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Product List</title>
+	</head>
+	<body>
+		<h1>Product List</h1>
+
+		<ul id="productList"></ul>
+
+		<script src="/app.js"></script>
+		<script>
+			async function fetchProducts() {
+				try {
+					const response = await fetch('/products');
+					const data = await response.json();
+
+					if (response.status === 200) {
+						const productList = document.getElementById('productList');
+						productList.innerHTML = ''; // Clear previous list
+
+						data.data.forEach((product) => {
+							const listItem = document.createElement('li');
+							listItem.innerHTML = `
+                          <strong>${product.productName}</strong> - ${product.description}
+                          <button onclick="publishProduct(${product.id})">Publish</button>
+                      `;
+							productList.appendChild(listItem);
+						});
+					} else {
+						console.error('Error fetching products:', data.message);
+					}
+				} catch (error) {
+					console.error('Error fetching products:', error);
+				}
+			}
+
+			async function publishProduct(productId) {
+				try {
+					const response = await fetch(`/products/${productId}/publish`, {
+						method: 'PUT',
+					});
+
+					const data = await response.json();
+
+					if (response.status === 200) {
+						fetchProducts(); // Refresh the product list
+					} else {
+						console.error('Error publishing product:', data.message);
+					}
+				} catch (error) {
+					console.error('Error publishing product:', error);
+				}
+			}
+
+			document.addEventListener('DOMContentLoaded', () => {
+				fetchProducts();
+			});
+		</script>
+	</body>
+</html>

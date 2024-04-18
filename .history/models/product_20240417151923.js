@@ -1,0 +1,52 @@
+const Sequelize = require('sequelize');
+const sequelize = require('../db');
+
+const Product = sequelize.define(
+	'Product',
+	{
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+		},
+		productName: {
+			type: Sequelize.TEXT,
+			allowNull: false,
+			field: 'product_name',
+		},
+		description: {
+			type: Sequelize.TEXT, // Add this line for description
+			field: 'description',
+		},
+		affiliateLink: {
+			type: Sequelize.TEXT,
+			allowNull: false,
+			field: 'affiliate_link',
+		},
+		published: {
+			type: Sequelize.BOOLEAN,
+			defaultValue: false,
+			field: 'published',
+		},
+		image: {
+			type: Sequelize.BLOB,
+			allowNull: true,
+			field: 'image',
+		},
+		status: {
+			type: Sequelize.STRING,
+			field: 'status',
+		},
+
+		// productURL: {
+		// 	type: Sequelize.STRING,
+		// 	field: 'product_url',
+		// },
+	},
+	{
+		tableName: 'products',
+		timestamps: false,
+	}
+);
+
+module.exports = Product;

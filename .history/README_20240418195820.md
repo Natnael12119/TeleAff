@@ -1,0 +1,65 @@
+# TeleAff - Amazon Affiliate App
+
+## Introduction
+
+TeleAff is a simple web application that allows users to submit their Amazon affiliate products for promotion on a Telegram channel.
+
+- [Deployed Site](#)
+- [Final Project Blog Article](#)
+- [Author LinkedIn](#)
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/teleaff.git
+   cd teleaff
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the root directory and add the following environment variables:
+
+   ```env
+   DB_DIALECT=postgres
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USERNAME=your_db_username
+   DB_PASSWORD=your_db_password
+   DB_NAME=teleaff
+   TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+   TELEGRAM_CHAT_ID=your_telegram_chat_id
+   ```
+
+4. Start the server:
+   ```bash
+   npm start
+   ```
+
+## Usage
+
+1. Open `http://127.0.0.1:5000/` in your web browser.
+2. Fill out the product submission form and click "Save".
+3. View the list of unpublished products at `http://127.0.0.1:5000/productList`.
+4. Click the "Publish" button to publish a product.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Related Projects
+
+- [TeleAff Telegram Bot](https://github.com/yourusername/teleaff-telegram-bot)
+
+## Licensing
+
+[MIT](LICENSE)
+
+---
+
+![TeleAff Screenshot](/path/to/screenshot.png)
